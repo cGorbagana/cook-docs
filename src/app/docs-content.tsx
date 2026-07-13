@@ -18,7 +18,7 @@ export const navigation = [
       ["Architecture & Consensus", "/architecture"],
       ["COOK (Native Token)", "/cook"],
       ["Validators", "/validators"],
-      ["Multi-sig Bridge", "/bridge"],
+      ["Bridge", "/bridge"],
       ["Bridge Mechanism", "/bridge-mechanism"],
     ],
   },
@@ -91,11 +91,11 @@ export const searchIndex = [
     terms: "validator hardware stake operator decentralization uptime",
   },
   {
-    title: "Multi-sig Bridge",
+    title: "Bridge",
     href: "/bridge",
     section: "The Chain",
     terms:
-      "bridge multisig lock unlock solana cookie chain squads pda vault proposals threshold",
+      "bridge hyperlane instant warp route multisig lock unlock solana cookie chain squads pda vault proposals threshold deprecated legacy",
   },
   {
     title: "Bridge Mechanism",
@@ -370,8 +370,9 @@ export const docsPages = [
             single operator.
           </li>
           <li>
-            <strong>Multi-sig bridge:</strong> COOK moves between Solana and
-            Cookie Chain through an m-of-n community multi-sig, so no single key
+            <strong>Bridge:</strong> COOK moves between Solana and Cookie
+            Chain instantly through the Hyperlane warp route, while reserves
+            remain custodied by an m-of-n community multi-sig, so no single key
             controls the vault.
           </li>
           <li>
@@ -429,8 +430,8 @@ export const docsPages = [
         <H3>4. Get COOK</H3>
         <P>
           Bridge COOK from Solana through the community multi-sig bridge at{" "}
-          <ExternalLink href="https://bridge.cookiescan.io">
-            bridge.cookiescan.io
+          <ExternalLink href="https://hyperlane.cookiescan.io">
+            hyperlane.cookiescan.io
           </ExternalLink>
           . Deposits and withdrawals are authorized by an m-of-n community
           signer set.
@@ -488,8 +489,8 @@ export const docsPages = [
           </li>
           <li>
             Bridge COOK through{" "}
-            <ExternalLink href="https://bridge.cookiescan.io">
-              bridge.cookiescan.io
+            <ExternalLink href="https://hyperlane.cookiescan.io">
+              hyperlane.cookiescan.io
             </ExternalLink>
             .
           </li>
@@ -602,8 +603,8 @@ export const docsPages = [
           </li>
           <li>
             Bridge:{" "}
-            <ExternalLink href="https://bridge.cookiescan.io">
-              bridge.cookiescan.io
+            <ExternalLink href="https://hyperlane.cookiescan.io">
+              hyperlane.cookiescan.io
             </ExternalLink>
           </li>
         </List>
@@ -708,8 +709,8 @@ export const docsPages = [
         <List>
           <li>
             Bridge from Solana via{" "}
-            <ExternalLink href="https://bridge.cookiescan.io">
-              bridge.cookiescan.io
+            <ExternalLink href="https://hyperlane.cookiescan.io">
+              hyperlane.cookiescan.io
             </ExternalLink>
             .
           </li>
@@ -768,34 +769,51 @@ export const docsPages = [
     slug: "bridge",
     href: "/bridge",
     label: "The Chain",
-    title: "Community Multi-sig Bridge",
+    title: "Bridge",
     description:
-      "COOK moves between Solana and Cookie Chain through a community-operated lock/unlock multi-sig bridge.",
+      "COOK moves between Solana and Cookie Chain instantly via Hyperlane; reserves are custodied by community multi-sigs. The legacy escrow bridge was deprecated July 10, 2026.",
     content: (
       <>
         <P>
-          COOK moves between Solana and Cookie Chain through a
-          community-operated multi-sig. It is a lock/unlock bridge, not a
-          mint/burn bridge, and no single party can move bridge funds
-          unilaterally.
+          The bridge has three layers: an instant Hyperlane warp route (the
+          way users move COOK today), a community multi-sig custody layer
+          holding the reserves, and a legacy escrow flow that was deprecated
+          on July 10, 2026. It is a lock/unlock system, not mint/burn, and no
+          single party can move reserve funds unilaterally.
         </P>
-        <H3>Flow: Solana to Cookie Chain</H3>
+        <H3>Hyperlane warp route (primary — instant)</H3>
+        <P>
+          Live July 3, 2026 and out of beta July 6, 2026. COOK is locked in
+          the collateral pool on the sending chain and a relayer delivers 1:1
+          COOK from the destination pool within seconds. Bridge at{" "}
+          <ExternalLink href="https://hyperlane.cookiescan.io">
+            hyperlane.cookiescan.io
+          </ExternalLink>
+          .
+        </P>
         <List>
           <li>
-            <strong>Lock on Solana:</strong> the user deposits COOK into bridge
-            vault on Solana mainnet.
+            <strong>Cookie Chain collateral pool:</strong>{" "}
+            <InlineCode>CL2JoQ5jdTpRNKshWhaTihuooT4qrKdLUiPsqKj3yAKz</InlineCode>
           </li>
           <li>
-            <strong>Unlock on Cookie Chain:</strong> once the threshold is met,
-            the multi-sig authorizes the corresponding asset to unlock on Cookie
-            Chain to the user wallet.
+            <strong>Solana collateral escrow:</strong>{" "}
+            <InlineCode>88q7zoKctwAQRsoTxkMJy95sNE3tntuyEhSrhvR1eZwq</InlineCode>
           </li>
         </List>
-        <H3>Flow: Cookie Chain to Solana</H3>
+        <H3>Legacy escrow bridge (deprecated July 10, 2026)</H3>
         <P>
-          In the reverse direction, the same signer set controls the
-          corresponding unlock back on Solana. The community multi-sig
-          coordinates bridge locks and unlocks on both sides.
+          The original community-operated escrow flow (deposit with a memo,
+          manual settlement in 12-24 hours) served from launch on May 26
+          through July 10, 2026, and has been retired in favor of the instant
+          Hyperlane route. Do not send funds to the legacy flow.
+        </P>
+        <H3>Custody layer: community multi-sigs</H3>
+        <P>
+          Reserves on both chains are held by matching community multi-sigs.
+          The same signer set coordinates reserve operations on both sides;
+          releases require the signature threshold, and every movement is a
+          public on-chain proposal.
         </P>
         <H3>Multisig transparency</H3>
         <P>
@@ -845,9 +863,10 @@ export const docsPages = [
         </P>
         <Callout>
           Bridge frontend:{" "}
-          <ExternalLink href="https://bridge.cookiechain.io">
-            bridge.cookiechain.io
-          </ExternalLink>
+          <ExternalLink href="https://hyperlane.cookiescan.io">
+            hyperlane.cookiescan.io
+          </ExternalLink>{" "}
+          (instant, Hyperlane warp route)
         </Callout>
       </>
     ),
@@ -883,19 +902,25 @@ export const docsPages = [
             representing 27% of the supply. (on Solana Side)
           </li>
         </List>
-        <H3>Locked holder bridge-out</H3>
+        <H3>Locked holder bridge-out (executed)</H3>
         <P>
-          The plan is to create the Pumpfun token on Solana and acquire locked
-          COOK tokens, equal to 27% of the supply. That acquired allocation is
-          used to let locked holders bridge out freely instead of being trapped
-          by the original lock structure.
+          This was executed at launch: the Pump.fun token (sCOOK) was created
+          on Solana on May 26, 2026, and an allocation equal to roughly 28% of
+          supply was acquired and locked to back genesis holders. That equity
+          reserve lets legacy holders bridge out freely instead of being
+          trapped by the original lock structure, and remains in place under
+          multi-sig custody.
         </P>
-        <H3>1:1 conversion bridge</H3>
+        <H3>1:1 conversion bridge (live)</H3>
         <P>
-          After the locked-holder path is live, the next phase is a 1:1
-          conversion relayer bridge between Solana COOK and Cookie Chain COOK.
-          Users will be able to move between <InlineCode>sCOOK</InlineCode> and{" "}
-          <InlineCode>cCOOK</InlineCode> through the relayer bridge at parity.
+          The 1:1 conversion bridge is live: since July 3, 2026 users move
+          between <InlineCode>sCOOK</InlineCode> and{" "}
+          <InlineCode>cCOOK</InlineCode> at parity through the instant
+          Hyperlane warp route at{" "}
+          <ExternalLink href="https://hyperlane.cookiescan.io">
+            hyperlane.cookiescan.io
+          </ExternalLink>
+          . The original manual relayer flow was deprecated on July 10, 2026.
         </P>
         <H3>Fee usage</H3>
         <P>
@@ -1270,8 +1295,8 @@ wallet  = "~/.config/solana/id.json"`}</Code>
         <H3>How do I move assets in and out?</H3>
         <P>
           Use the community multi-sig bridge at{" "}
-          <ExternalLink href="https://bridge.cookiescan.io">
-            bridge.cookiescan.io
+          <ExternalLink href="https://hyperlane.cookiescan.io">
+            hyperlane.cookiescan.io
           </ExternalLink>
           . Deposits and withdrawals are handled through community-controlled
           locks and unlocks. See the{" "}
