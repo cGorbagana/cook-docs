@@ -1328,7 +1328,7 @@ wallet  = "~/.config/solana/id.json"`}</Code>
             [
               "Telegram",
               "Community chat and coordination.",
-              "https://t.me/c/3915049810/1",
+              "https://t.me/TheCookieNetChain",
             ],
             [
               "X",
