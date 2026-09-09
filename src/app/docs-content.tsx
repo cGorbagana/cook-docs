@@ -599,7 +599,7 @@ export const docsPages = [
             RPC: <InlineCode>https://rpc.cookiescan.io</InlineCode>
           </li>
           <li>
-            WebSocket: <InlineCode>https://wss.cookiescan.io</InlineCode>
+            WebSocket: <InlineCode>wss://rpc.cookiescan.io</InlineCode>
           </li>
           <li>
             Bridge:{" "}
@@ -1086,7 +1086,7 @@ export const docsPages = [
           </li>
           <li>
             <strong>WebSocket:</strong>{" "}
-            <InlineCode>https://wss.cookiescan.io</InlineCode>
+            <InlineCode>wss://rpc.cookiescan.io</InlineCode>
           </li>
         </List>
         <H3>JavaScript / TypeScript</H3>
