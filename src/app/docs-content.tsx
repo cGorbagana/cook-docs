@@ -308,9 +308,14 @@ const genesisPrograms = [
   ["Memo v1", "MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr", "Memo program"],
   ["Squads v4", "SQDS4ep65T869zMMBKyuUq6aD6EgTu8psMjkvj52pCf", "Multisig"],
   [
-    "Name Service",
+    "Solana Name Service",
     "namesLPneVptA9Z5rqUDD9tMTWEJwofgaYwp8cawRkX",
-    ".cook name service",
+    "SPL Name Service (SNS). Not .cook.",
+  ],
+  [
+    "Cook Domains",
+    "H43Qtq4AMQ86y7yc3YtCKZJ2QMhhnCcHyZKeFeoQn7PA",
+    ".cook names (CookOven / book.cookoven.xyz)",
   ],
   [
     "Auction House",
